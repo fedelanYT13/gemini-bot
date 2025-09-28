@@ -42,7 +42,7 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
   const premium = global.db.data.users[m.sender].premium? '✅ Premium': '❌ Normal'
   const mode = global.opts.self? 'Privado': 'Público'
 
-  const help = Object.values(global.plugins).filter(p =>!p.disabled).map(p => ({
+  const help = Object.values(global.plugins).filter(p =>!p.disabled && p.help && p.tags).map(p => ({
     help: Array.isArray(p.help)? p.help: [p.help],
     tags: Array.isArray(p.tags)? p.tags: [p.tags],
     prefix: 'customPrefix' in p,
