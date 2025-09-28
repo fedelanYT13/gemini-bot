@@ -42,9 +42,11 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
   const premium = global.db.data.users[m.sender].premium? '✅ Premium': '❌ Normal'
   const mode = global.opts.self? 'Privado': 'Público'
 
-  const help = Object.values(global.plugins).filter(p =>!p.disabled && p.help && p.tags).map(p => ({
-    help: Array.isArray(p.help)? p.help: [p.help],
-    tags: Array.isArray(p.tags)? p.tags: [p.tags],
+  const help = Object.values(global.plugins).filter(p =>
+!p.disabled && p.help && p.tags && Array.isArray(p.help) && Array.isArray(p.tags)
+).map(p => ({
+    help: p.help,
+    tags: p.tags,
     prefix: 'customPrefix' in p,
     limit: p.limit,
     premium: p.premium
@@ -58,17 +60,15 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
 
   const { before, header, body, footer, after} = defaultMenu
 
-  const menuText = [
-    before,
-...Object.keys(tags).map(tag => {
-      const cmds = help
+  const menuSections = Object.keys(tags).map(tag => {
+    const cmds = help
 .filter(menu => menu.tags.includes(tag))
 .map(menu => menu.help.map(cmd => body.replace(/%cmd/g, menu.prefix? cmd: _p + cmd)).join('\n'))
 .join('\n')
-      return `${header.replace(/%category/g, tags[tag])}\n${cmds}\n${footer}`
-}),
-    after
-  ].join('\n')
+    return cmds? `${header.replace(/%category/g, tags[tag])}\n${cmds}\n${footer}`: ''
+}).filter(section => section.trim()!== '')
+
+  const menuText = [before,...menuSections, after].join('\n')
 
   const replace = {
     '%': '%',
@@ -83,6 +83,11 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
 }
 
   const finalMenu = menuText.replace(/%(\w+)/g, (_, key) => replace[key] || '')
+
+  if (!finalMenu.trim()) {
+    await conn.sendMessage(m.chat, { text: '⚠️ El menú está vacío. Verifica que los plugins tengan `help` y `tags` definidos correctamente.'}, { quoted: m})
+    return
+}
 
   await conn.sendMessage(m.chat, {
     image: { url: 'https://files.catbox.moe/gm249p.jpg'},
