@@ -97,7 +97,7 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
       externalAdReply: {
         title: '🌸 Kaoruko Menu',
         body: 'Desarrollado por Moonfrare',
-        thumbnailUrl: 'https://moonfare.team-,
+        thumbnailUrl: 'https://moonfare.team',
         mediaType: 1,
         renderLargerThumbnail: true,
         showAdAttribution: false
