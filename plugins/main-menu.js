@@ -1,4 +1,3 @@
-import fs from 'fs'
 import { xpRange} from '../lib/levelling.js'
 
 const textCyberpunk = (text) => {
@@ -36,53 +35,31 @@ const defaultMenu = {
 }
 
 let handler = async (m, { conn, usedPrefix: _p}) => {
-  let { exp, level} = global.db.data.users[m.sender]
-  let { min, xp, max} = xpRange(level, global.multiplier)
-  let name = await conn.getName(m.sender)
-  let totalreg = Object.keys(global.db.data.users).length
-  let premium = global.db.data.users[m.sender].premium? '✅ Premium': '❌ Normal'
-  let mode = global.opts["self"]? "Privado": "Público"
+  const { exp, level} = global.db.data.users[m.sender]
+  const { min, xp} = xpRange(level, global.multiplier)
+  const name = await conn.getName(m.sender)
+  const totalreg = Object.keys(global.db.data.users).length
+  const premium = global.db.data.users[m.sender].premium? '✅ Premium': '❌ Normal'
+  const mode = global.opts.self? 'Privado': 'Público'
 
-  let help = Object.values(global.plugins).filter(p =>!p.disabled).map(p => ({
+  const help = Object.values(global.plugins).filter(p =>!p.disabled).map(p => ({
     help: Array.isArray(p.help)? p.help: [p.help],
     tags: Array.isArray(p.tags)? p.tags: [p.tags],
     prefix: 'customPrefix' in p,
     limit: p.limit,
-    premium: p.premium,
-    enabled:!p.disabled
+    premium: p.premium
 }))
 
-  for (let plugin of help) {
-    if (plugin.tags) {
-      for (let t of plugin.tags) {
-        if (!(t in tags) && t) tags[t] = textCyberpunk(t)
-}
+  for (const plugin of help) {
+    for (const t of plugin.tags) {
+      if (!(t in tags)) tags[t] = textCyberpunk(t)
 }
 }
 
   const { before, header, body, footer, after} = defaultMenu
 
-  const fecha = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric'})
-  const hora = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit'})
-  const ucapan = (() => {
-    const h = new Date().getHours()
-    if (h < 5) return 'Buenas noches'
-    if (h < 11) return 'Buen día'
-    if (h < 15) return 'Buenas tardes'
-    if (h < 20) return 'Buenas tardes'
-    return 'Buenas noches'
-})()
-
-  let menuIntro = `\n\n`
-  menuIntro += `>. ﹡ ﹟ 🌹 ׄ ⬭ ${ucapan}  *${name}*\n\n`
-  menuIntro += `ׅㅤꨶ〆⁾ ㅤׄㅤ⸼ㅤׄ *͜🐼* ㅤ֢ㅤ⸱ㅤᯭִ\n`
-  menuIntro += `ׅㅤ𓏸𓈒ㅤׄ *Plugins ›* ${help.length}\n`
-  menuIntro += `ׅㅤ𓏸𓈒ㅤׄ *Versión ›* ^0.0.9 ⋆. 𐙚 ˚\n\n`
-  menuIntro += `ׅㅤ𓏸𓈒ㅤׄ *Fecha ›* ${fecha}, ${hora}\n`
-
-  let menuText = [
+  const menuText = [
     before,
-    menuIntro,
 ...Object.keys(tags).map(tag => {
       const cmds = help
 .filter(menu => menu.tags.includes(tag))
@@ -93,7 +70,7 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
     after
   ].join('\n')
 
-  let replace = {
+  const replace = {
     '%': '%',
     name,
     level,
@@ -105,23 +82,27 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
     readmore: String.fromCharCode(8206).repeat(4001)
 }
 
-  let finalMenu = menuText.replace(/%(\w+)/g, (_, key) => replace[key] || '')
+  const finalMenu = menuText.replace(/%(\w+)/g, (_, key) => replace[key] || '')
 
   await conn.sendMessage(m.chat, {
     image: { url: 'https://files.catbox.moe/gm249p.jpg'},
     caption: finalMenu,
+    footer: '🧠 Dev: Moonfrare',
     contextInfo: {
-      mentionedJid: [m.sender]
+      mentionedJid: [m.sender],
+      externalAdReply: {
+        title: '🌸 Kaoruko Menu',
+        body: 'Desarrollado por Moonfrare',
+        thumbnailUrl: 'https://files.catbox.moe/gm249p.jpg',
+        mediaType: 1,
+        renderLargerThumbnail: true,
+        showAdAttribution: false
 }
-}, { quoted: m})
-
-  await conn.sendMessage(m.chat, {
-    document: fs.readFileSync('./package.json'),
-    fileName: 'Moonfrare.pdf',
-    mimetype: 'application/pdf',
-    contextInfo: {
-      mentionedJid: [m.sender]
-}
+},
+    buttons: [
+      { buttonId: '.reg fede.13', buttonText: { displayText: '📝 Registrar fede.13'}, type: 1},
+      { buttonId: '.code', buttonText: { displayText: '💻 Código'}, type: 1}
+    ]
 }, { quoted: m})
 }
 
@@ -132,8 +113,8 @@ handler.command = ['menu', 'menú', 'help']
 export default handler
 
 function clockString(ms) {
-  let h = isNaN(ms)? '--': Math.floor(ms / 3600000)
-  let m = isNaN(ms)? '--': Math.floor(ms / 60000) % 60
-  let s = isNaN(ms)? '--': Math.floor(ms / 1000) % 60
+  const h = isNaN(ms)? '--': Math.floor(ms / 3600000)
+  const m = isNaN(ms)? '--': Math.floor(ms / 60000) % 60
+  const s = isNaN(ms)? '--': Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
 }
