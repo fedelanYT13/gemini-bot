@@ -88,21 +88,21 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
     image: { url: 'https://files.catbox.moe/gm249p.jpg'},
     caption: finalMenu,
     footer: '🧠 Dev: Moonfrare',
+    templateButtons: [
+      { index: 1, quickReplyButton: { displayText: '📝 VERIFICAR', id: '.reg fede.13'}},
+      { index: 2, quickReplyButton: { displayText: '💻 CODIGO', id: '.code'}}
+    ],
     contextInfo: {
       mentionedJid: [m.sender],
       externalAdReply: {
         title: '🌸 Kaoruko Menu',
         body: 'Desarrollado por Moonfrare',
-        thumbnailUrl: 'https://files.catbox.moe/gm249p.jpg',
+        thumbnailUrl: 'https://moonfare.team-,
         mediaType: 1,
         renderLargerThumbnail: true,
         showAdAttribution: false
 }
-},
-    buttons: [
-      { buttonId: '.reg fede.13', buttonText: { displayText: '📝 Registrar fede.13'}, type: 1},
-      { buttonId: '.code', buttonText: { displayText: '💻 Código'}, type: 1}
-    ]
+}
 }, { quoted: m})
 }
 
@@ -117,4 +117,4 @@ function clockString(ms) {
   const m = isNaN(ms)? '--': Math.floor(ms / 60000) % 60
   const s = isNaN(ms)? '--': Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
-}
+  }
