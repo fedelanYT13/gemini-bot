@@ -1,13 +1,13 @@
 import { xpRange} from '../lib/levelling.js'
 
-const textCyberpunk = (text) => {
+const textCyberpunk = (text = '') => {
   const charset = {
     a: 'ᴀ', b: 'ʙ', c: 'ᴄ', d: 'ᴅ', e: 'ᴇ', f: 'ꜰ', g: 'ɢ',
     h: 'ʜ', i: 'ɪ', j: 'ᴊ', k: 'ᴋ', l: 'ʟ', m: 'ᴍ', n: 'ɴ',
     o: 'ᴏ', p: 'ᴘ', q: 'ǫ', r: 'ʀ', s: 'ꜱ', t: 'ᴛ', u: 'ᴜ',
     v: 'ᴠ', w: 'ᴡ', x: 'x', y: 'ʏ', z: 'ᴢ'
 }
-  return text.toLowerCase().split('').map(c => charset[c] || c).join('')
+  return String(text).toLowerCase().split('').map(c => charset[c] || c).join('')
 }
 
 let tags = {
@@ -97,7 +97,7 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
       externalAdReply: {
         title: '🌸 Kaoruko Menu',
         body: 'Desarrollado por Moonfrare',
-        thumbnailUrl: 'https://moonfare.team',
+        thumbnailUrl: 'https://files.catbox.moe/gm249p.jpg',
         mediaType: 1,
         renderLargerThumbnail: true,
         showAdAttribution: false
@@ -117,4 +117,4 @@ function clockString(ms) {
   const m = isNaN(ms)? '--': Math.floor(ms / 60000) % 60
   const s = isNaN(ms)? '--': Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
-  }
+}
