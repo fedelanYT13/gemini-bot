@@ -37,7 +37,7 @@ let handler = async (m, { text, usedPrefix, command}) => {
 }
 }
 
-handler.help = ['setmeta', 'delmta']
+handler.help = ['setmeta', 'delmeta']
 handler.tags = ['tools']
 handler.command = ['setmeta', 'delmeta']
 handler.group = true
