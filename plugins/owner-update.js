@@ -3,7 +3,7 @@ import { execSync} from 'child_process'
 const handler = async (m, { conn, text}) => {
   const sender = m.sender.split('@')[0]
   if (!global.owner.includes(sender)) {
-    return conn.reply(m.chat, '⛔ Solo el owner puede usar este comando.', m)
+    return conn.reply(m.chat, '😑 Solo el owner puede usar este comando.', m)
 }
 
   await m.react('🕒')
@@ -12,9 +12,9 @@ const handler = async (m, { conn, text}) => {
     const stdout = execSync('git pull' + (text? ' ' + text: ''))
     let messager = stdout.toString().trim()
 
-    if (!messager) messager = '✅ El bot ya está actualizado. No hay cambios nuevos.'
-    else if (messager.includes('Already up to date')) messager = '✅ Ya está todo al día.'
-    else if (messager.includes('Updating')) messager = '🔄 Actualizando archivos del bot...\n\n' + messager
+    if (!messager) messager = '❀ El bot ya está actualizado. No hay cambios nuevos.'
+    else if (messager.includes('Already up to date')) messager = '👻 Ya estoy actualizada pendejo'
+    else if (messager.includes('Updating')) messager = 'ꕥ Actualizando archivos del bot...\n\n' + messager
 
     await m.react('✔️')
     await conn.reply(m.chat, messager, m)
