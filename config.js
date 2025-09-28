@@ -23,7 +23,7 @@ global.baileys = 'V 7.0.0-rc.3'
 global.vs = '2.2.0'
 global.nameqr = 'Kaoruko bot'
 global.namebot = 'Kaoruko Wa-Bot'
-global.sessions = 'auth/authv2'
+global.sessions = 'sessions/Principal'
 global.jadi = 'jadibots' 
 global.yukiJadibts = true // Activado
 
