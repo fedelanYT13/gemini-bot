@@ -1,13 +1,13 @@
 import { xpRange} from '../lib/levelling.js'
 
-const textCyberpunk = (text = '') => {
+const textCyberpunk = (text) => {
   const charset = {
     a: 'ᴀ', b: 'ʙ', c: 'ᴄ', d: 'ᴅ', e: 'ᴇ', f: 'ꜰ', g: 'ɢ',
     h: 'ʜ', i: 'ɪ', j: 'ᴊ', k: 'ᴋ', l: 'ʟ', m: 'ᴍ', n: 'ɴ',
     o: 'ᴏ', p: 'ᴘ', q: 'ǫ', r: 'ʀ', s: 'ꜱ', t: 'ᴛ', u: 'ᴜ',
     v: 'ᴠ', w: 'ᴡ', x: 'x', y: 'ʏ', z: 'ᴢ'
 }
-  return String(text).toLowerCase().split('').map(c => charset[c] || c).join('')
+  return text.toLowerCase().split('').map(c => charset[c] || c).join('')
 }
 
 let tags = {
@@ -35,42 +35,47 @@ const defaultMenu = {
 }
 
 let handler = async (m, { conn, usedPrefix: _p}) => {
-  const { exp, level} = global.db.data.users[m.sender]
-  const { min, xp} = xpRange(level, global.multiplier)
-  const name = await conn.getName(m.sender)
-  const totalreg = Object.keys(global.db.data.users).length
-  const premium = global.db.data.users[m.sender].premium? '✅ Premium': '❌ Normal'
-  const mode = global.opts.self? 'Privado': 'Público'
+  let { exp, level} = global.db.data.users[m.sender]
+  let { min, xp, max} = xpRange(level, global.multiplier)
+  let name = await conn.getName(m.sender)
+  let _uptime = process.uptime() * 1000
+  let muptime = clockString(_uptime)
+  let totalreg = Object.keys(global.db.data.users).length
+  let premium = global.db.data.users[m.sender].premium? '✅ Premium': '❌ Normal'
+  let mode = global.opts["self"]? "Privado": "Público"
 
-  const help = Object.values(global.plugins).filter(p =>
-!p.disabled && p.help && p.tags && Array.isArray(p.help) && Array.isArray(p.tags)
-).map(p => ({
-    help: p.help,
-    tags: p.tags,
+  let help = Object.values(global.plugins).filter(p =>!p.disabled).map(p => ({
+    help: Array.isArray(p.help)? p.help: [p.help],
+    tags: Array.isArray(p.tags)? p.tags: [p.tags],
     prefix: 'customPrefix' in p,
     limit: p.limit,
-    premium: p.premium
+    premium: p.premium,
+    enabled:!p.disabled
 }))
 
-  for (const plugin of help) {
-    for (const t of plugin.tags) {
-      if (!(t in tags)) tags[t] = textCyberpunk(t)
+  for (let plugin of help) {
+    if (plugin.tags) {
+      for (let t of plugin.tags) {
+        if (!(t in tags) && t) tags[t] = textCyberpunk(t)
+}
 }
 }
 
   const { before, header, body, footer, after} = defaultMenu
 
-  const menuSections = Object.keys(tags).map(tag => {
-    const cmds = help
+  let menuText = [
+    before,
+...Object.keys(tags).map(tag => {
+      const cmds = help
 .filter(menu => menu.tags.includes(tag))
 .map(menu => menu.help.map(cmd => body.replace(/%cmd/g, menu.prefix? cmd: _p + cmd)).join('\n'))
 .join('\n')
-    return cmds? `${header.replace(/%category/g, tags[tag])}\n${cmds}\n${footer}`: ''
-}).filter(section => section.trim()!== '')
+      return `${header.replace(/%category/g, tags[tag])}\n${cmds}\n${footer}`
+}),
+    after
+  ].join('\n')
 
-  const menuText = [before,...menuSections, after].join('\n')
-
-  const replace = {
+  let replace = {
     '%': '%',
     name,
     level,
@@ -82,31 +87,13 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
     readmore: String.fromCharCode(8206).repeat(4001)
 }
 
-  const finalMenu = menuText.replace(/%(\w+)/g, (_, key) => replace[key] || '')
-
-  if (!finalMenu.trim()) {
-    await conn.sendMessage(m.chat, { text: '⚠️ El menú está vacío. Verifica que los plugins tengan `help` y `tags` definidos correctamente.'}, { quoted: m})
-    return
-}
+  let finalMenu = menuText.replace(/%(\w+)/g, (_, key) => replace[key] || '')
 
   await conn.sendMessage(m.chat, {
     image: { url: 'https://files.catbox.moe/gm249p.jpg'},
     caption: finalMenu,
-    footer: '🧠 Dev: Moonfrare',
-    templateButtons: [
-      { index: 1, quickReplyButton: { displayText: '📝 VERIFICAR', id: '.reg fede.13'}},
-      { index: 2, quickReplyButton: { displayText: '💻 CODIGO', id: '.code'}}
-    ],
     contextInfo: {
-      mentionedJid: [m.sender],
-      externalAdReply: {
-        title: '🌸 Kaoruko Menu',
-        body: 'Desarrollado por Moonfrare',
-        thumbnailUrl: 'https://files.catbox.moe/gm249p.jpg',
-        mediaType: 1,
-        renderLargerThumbnail: true,
-        showAdAttribution: false
-}
+      mentionedJid: [m.sender]
 }
 }, { quoted: m})
 }
@@ -118,8 +105,8 @@ handler.command = ['menu', 'menú', 'help']
 export default handler
 
 function clockString(ms) {
-  const h = isNaN(ms)? '--': Math.floor(ms / 3600000)
-  const m = isNaN(ms)? '--': Math.floor(ms / 60000) % 60
-  const s = isNaN(ms)? '--': Math.floor(ms / 1000) % 60
+  let h = isNaN(ms)? '--': Math.floor(ms / 3600000)
+  let m = isNaN(ms)? '--': Math.floor(ms / 60000) % 60
+  let s = isNaN(ms)? '--': Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
-}
+    }
