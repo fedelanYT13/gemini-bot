@@ -8,15 +8,11 @@ import axios from 'axios'
 import moment from 'moment-timezone' 
 
 global.owner = [
-   ['5491156178758', '5491137612743', true],
+"5491137612743",
 ]
 
-global.creadorbot = [
-   ['5491156178758', '5491137612743', true],
-]
-
-global.mods = ['5491156178758']
-global.prems = ['5491137612743']
+global.suittag = ["5491137612743"] 
+global.prems = []
 
 global.libreria = 'Baileys'
 global.baileys = 'V 7.0.0-rc.3' 
