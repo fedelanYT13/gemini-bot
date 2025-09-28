@@ -1,112 +1,112 @@
-import { xpRange} from '../lib/levelling.js'
+import fetch from 'node-fetch'
+import fs from 'fs'
+import moment from 'moment-timezone'
+import { commands} from '../lib/commands.js'
 
-const textCyberpunk = (text) => {
-  const charset = {
-    a: 'ᴀ', b: 'ʙ', c: 'ᴄ', d: 'ᴅ', e: 'ᴇ', f: 'ꜰ', g: 'ɢ',
-    h: 'ʜ', i: 'ɪ', j: 'ᴊ', k: 'ᴋ', l: 'ʟ', m: 'ᴍ', n: 'ɴ',
-    o: 'ᴏ', p: 'ᴘ', q: 'ǫ', r: 'ʀ', s: 'ꜱ', t: 'ᴛ', u: 'ᴜ',
-    v: 'ᴠ', w: 'ᴡ', x: 'x', y: 'ʏ', z: 'ᴢ'
-}
-  return text.toLowerCase().split('').map(c => charset[c] || c).join('')
-}
+let handler = async (m, { conn, args, usedPrefix}) => {
+  try {
+    const cmdsList = commands
+    const now = new Date()
+    const colombianTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Bogota'}))
+    const fecha = colombianTime.toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+}).replace(/,/g, '')
+    const hora = moment.tz('America/Bogota').format('hh:mm A')
 
-let tags = {
-  main: textCyberpunk('sistema'),
-  group: textCyberpunk('grupos'),
-  tools: textCyberpunk('herramientas'),
-  fun: textCyberpunk('diversión'),
-  premium: textCyberpunk('premium')
-}
+    const sessionFolder = './plugins'
+    const subSessions = fs.existsSync(sessionFolder)? fs.readdirSync(sessionFolder): []
+    const plugins = subSessions.length
 
-const defaultMenu = {
-  before: `
-╭───⌁ 𝑲𝒂𝒐𝒓𝒖𝒌𝒐 - 𝑩𝒐𝒕 ⌁───╮
-│ 🌸 𝑯𝒐𝒍𝒂, *%name*
-│ 🧾 𝑷𝒓𝒐𝒇𝒊𝒍: *%premium*
-│ ⚙️ 𝑴𝒐𝒅𝒐: *%mode*
-│ 📋 𝑼𝒔𝒖𝒂𝒓𝒊𝒐𝒔: *%totalreg*
-╰─────────────────────╯
-%readmore
-`.trimStart(),
-  header: '\n˚ `≡` *%category*',
-  body: '⏤͟͟͞͞☕ ⇢ %cmd',
-  footer: '',
-  after: '\n> © 𝖯𝗈𝗐𝖾𝗋𝖾𝖽 𝖡𝗒 𝖬𝗈𝗈𝖓𝖿𝗋𝖺𝗋𝖾 ☽'
-}
+    const isOficialBot = conn.user.jid === globalThis.conn.user.jid
+    const botType = isOficialBot? 'Principal': 'Sub-Bot'
 
-let handler = async (m, { conn, usedPrefix: _p}) => {
-  let { exp, level} = global.db.data.users[m.sender]
-  let { min, xp, max} = xpRange(level, global.multiplier)
-  let name = await conn.getName(m.sender)
-  let _uptime = process.uptime() * 1000
-  let muptime = clockString(_uptime)
-  let totalreg = Object.keys(global.db.data.users).length
-  let premium = global.db.data.users[m.sender].premium? '✅ Premium': '❌ Normal'
-  let mode = global.opts["self"]? "Privado": "Público"
+    const jam = moment.tz('America/Bogota').locale('id').format('HH:mm:ss')
+    const ucapan = jam < '05:00:00'? 'Buen día'
+: jam < '11:00:00'? 'Buen día'
+: jam < '15:00:00'? 'Buenas tardes'
+: jam < '19:00:00'? 'Buenas tardes'
+: 'Buenas noches'
 
-  let help = Object.values(global.plugins).filter(p =>!p.disabled).map(p => ({
-    help: Array.isArray(p.help)? p.help: [p.help],
-    tags: Array.isArray(p.tags)? p.tags: [p.tags],
-    prefix: 'customPrefix' in p,
-    limit: p.limit,
-    premium: p.premium,
-    enabled:!p.disabled
-}))
+    let menu = `\n\n`
+    menu += `>. ﹡ ﹟ 🌹 ׄ ⬭ ${ucapan}  *${m.pushName || 'Sin nombre'}*\n\n`
+    menu += `ׅㅤꨶ〆⁾ ㅤׄㅤ⸼ㅤׄ *͜🐼* ㅤ֢ㅤ⸱ㅤᯭִ\n`
+    menu += `ׅㅤ𓏸𓈒ㅤׄ *Plugins ›* ${plugins}\n`
+    menu += `ׅㅤ𓏸𓈒ㅤׄ *Versión ›* ^0.0.9 ⋆. 𐙚 ˚\n\n`
+    menu += `ׅㅤ𓏸𓈒ㅤׄ *Fecha ›* ${fecha}, ${hora}\n`
 
-  for (let plugin of help) {
-    if (plugin.tags) {
-      for (let t of plugin.tags) {
-        if (!(t in tags) && t) tags[t] = textCyberpunk(t)
-}
-}
+    const categoryArg = args[0]?.toLowerCase()
+    const categories = {}
+
+    for (const command of cmdsList) {
+      const category = command.category || 'otros'
+      if (!categories[category]) categories[category] = []
+      categories[category].push(command)
 }
 
-  const { before, header, body, footer, after} = defaultMenu
-
-  let menuText = [
-    before,
-...Object.keys(tags).map(tag => {
-      const cmds = help
-.filter(menu => menu.tags.includes(tag))
-.map(menu => menu.help.map(cmd => body.replace(/%cmd/g, menu.prefix? cmd: _p + cmd)).join('\n'))
-.join('\n')
-      return `${header.replace(/%category/g, tags[tag])}\n${cmds}\n${footer}`
-}),
-    after
-  ].join('\n')
-
-  let replace = {
-    '%': '%',
-    name,
-    level,
-    exp: exp - min,
-    maxexp: xp,
-    totalreg,
-    mode,
-    premium,
-    readmore: String.fromCharCode(8206).repeat(4001)
+    if (categoryArg &&!categories[categoryArg]) {
+      return m.reply(`⭐ La categoría *${categoryArg}* no fue encontrada.`)
 }
 
-  let finalMenu = menuText.replace(/%(\w+)/g, (_, key) => replace[key] || '')
+    for (const [category, cmds] of Object.entries(categories)) {
+      if (categoryArg && category.toLowerCase()!== categoryArg) continue
+      const catName = category.charAt(0).toUpperCase() + category.slice(1)
+      menu += `\nㅤ🍂ᯭ⁾ ㅤׄ  ꤥㅤׄㅤꤪꤨ${catName}ㅤꤪꤨㅤ֢ㅤׄㅤׅ\n`
+      cmds.forEach(cmd => {
+        const match = usedPrefix.match(/[#\/+.!-]$/)
+        const separator = match? match[0]: ''
+        const cleanPrefix = separator || usedPrefix
+        const aliases = cmd.alias.map(a => {
+          const aliasClean = a.split(/[\/#!+.\-]+/).pop().toLowerCase()
+          return `${cleanPrefix}${aliasClean}`
+}).join(' › ')
+        menu += `֯　ׅ🍃ֶ֟፝֯ㅤ *${aliases}* ${cmd.uso? `+ ${cmd.uso}`: ''}\n`
+        menu += `> _*${cmd.desc}*_\n`
+})
+}
 
-  await conn.sendMessage(m.chat, {
-    image: { url: 'https://files.catbox.moe/gm249p.jpg'},
-    caption: finalMenu,
-    contextInfo: {
-      mentionedJid: [m.sender]
+    const canales = Object.entries(global.my).reduce((acc, [key, value]) => {
+      if (key.startsWith('ch')) {
+        const index = key.slice(2)
+        const nombre = global.my[`name${index}`]
+        if (nombre) acc.push({ id: value, nombre})
+}
+      return acc
+}, [])
+
+    const channelRD = canales[Math.floor(Math.random() * canales.length)]
+    const imageUrl = 'https://files.catbox.moe/gm249p.jpg'
+
+    await conn.sendMessage(m.chat, {
+      image: { url: imageUrl},
+      caption: menu.trim(),
+      contextInfo: {
+        forwardingScore: 0,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: channelRD.id,
+          serverMessageId: '0',
+          newsletterName: channelRD.nombre
+},
+        externalAdReply: {
+          title: botname,
+          body: dev,
+          showAdAttribution: false,
+          thumbnailUrl: imageUrl,
+          mediaType: 1,
+          previewType: 0,
+          renderLargerThumbnail: true
+}
 }
 }, { quoted: m})
+
+} catch (e) {
+await m.reply(`🕸 Error [${e}]`)
+}
 }
 
-handler.help = ['menu']
-handler.tags = ['main']
-handler.command = ['menu', 'menú', 'help']
-
+handler.help = ['menu', 'help']
+handler.tags = ['info']
+handler.command = ['menu', 'help']
 export default handler
-
-function clockString(ms) {
-  let h = isNaN(ms)? '--': Math.floor(ms / 3600000)
-  let m = isNaN(ms)? '--': Math.floor(ms / 60000) % 60
-  let s = isNaN(ms)? '--': Math.floor(ms / 1000) % 60
-  return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
-}
