@@ -1,7 +1,10 @@
 import { execSync} from 'child_process'
 
-const handler = async (m, { conn, text, isROwner}) => {
-  if (!isROwner) return conn.reply(m.chat, '⛔ Solo el owner puede usar este comando.', m)
+const handler = async (m, { conn, text}) => {
+  const sender = m.sender.split('@')[0]
+  if (!global.owner.includes(sender)) {
+    return conn.reply(m.chat, '⛔ Solo el owner puede usar este comando.', m)
+}
 
   await m.react('🕒')
 
