@@ -90,10 +90,13 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
   let finalMenu = menuText.replace(/%(\w+)/g, (_, key) => replace[key] || '')
 
   await conn.sendMessage(m.chat, {
-    image: { url: 'https://files.catbox.moe/gm249p.jpg'},
-    caption: finalMenu,
-    contextInfo: {
-      mentionedJid: [m.sender]
+  image: { url: 'https://files.catbox.moe/gm249p.jpg'},
+  caption: finalMenu,
+  document: fs.readFileSync('./package.json'),
+  fileName: 'Moonfrare.pdf',
+  mimetype: 'application/pdf',
+  contextInfo: {
+    mentionedJid: [m.sender]
 }
 }, { quoted: m})
 }
