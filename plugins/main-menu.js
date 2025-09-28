@@ -92,7 +92,6 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
   await conn.sendMessage(m.chat, {
   image: { url: 'https://files.catbox.moe/gm249p.jpg'},
   caption: finalMenu,
-  document: fs.readFileSync('./package.json'),
   fileName: 'Moonfrare.pdf',
   mimetype: 'application/pdf',
   contextInfo: {
