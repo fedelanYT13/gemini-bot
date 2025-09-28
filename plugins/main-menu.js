@@ -1,3 +1,4 @@
+import fs from 'fs'
 import { xpRange} from '../lib/levelling.js'
 
 const textCyberpunk = (text) => {
@@ -38,8 +39,6 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
   let { exp, level} = global.db.data.users[m.sender]
   let { min, xp, max} = xpRange(level, global.multiplier)
   let name = await conn.getName(m.sender)
-  let _uptime = process.uptime() * 1000
-  let muptime = clockString(_uptime)
   let totalreg = Object.keys(global.db.data.users).length
   let premium = global.db.data.users[m.sender].premium? '✅ Premium': '❌ Normal'
   let mode = global.opts["self"]? "Privado": "Público"
@@ -63,8 +62,27 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
 
   const { before, header, body, footer, after} = defaultMenu
 
+  const fecha = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric'})
+  const hora = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit'})
+  const ucapan = (() => {
+    const h = new Date().getHours()
+    if (h < 5) return 'Buenas noches'
+    if (h < 11) return 'Buen día'
+    if (h < 15) return 'Buenas tardes'
+    if (h < 20) return 'Buenas tardes'
+    return 'Buenas noches'
+})()
+
+  let menuIntro = `\n\n`
+  menuIntro += `>. ﹡ ﹟ 🌹 ׄ ⬭ ${ucapan}  *${name}*\n\n`
+  menuIntro += `ׅㅤꨶ〆⁾ ㅤׄㅤ⸼ㅤׄ *͜🐼* ㅤ֢ㅤ⸱ㅤᯭִ\n`
+  menuIntro += `ׅㅤ𓏸𓈒ㅤׄ *Plugins ›* ${help.length}\n`
+  menuIntro += `ׅㅤ𓏸𓈒ㅤׄ *Versión ›* ^0.0.9 ⋆. 𐙚 ˚\n\n`
+  menuIntro += `ׅㅤ𓏸𓈒ㅤׄ *Fecha ›* ${fecha}, ${hora}\n`
+
   let menuText = [
     before,
+    menuIntro,
 ...Object.keys(tags).map(tag => {
       const cmds = help
 .filter(menu => menu.tags.includes(tag))
@@ -90,12 +108,19 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
   let finalMenu = menuText.replace(/%(\w+)/g, (_, key) => replace[key] || '')
 
   await conn.sendMessage(m.chat, {
-  image: { url: 'https://files.catbox.moe/gm249p.jpg'},
-  caption: finalMenu,
-  fileName: 'Moonfrare.pdf',
-  mimetype: 'application/pdf',
-  contextInfo: {
-    mentionedJid: [m.sender]
+    image: { url: 'https://files.catbox.moe/gm249p.jpg'},
+    caption: finalMenu,
+    contextInfo: {
+      mentionedJid: [m.sender]
+}
+}, { quoted: m})
+
+  await conn.sendMessage(m.chat, {
+    document: fs.readFileSync('./package.json'),
+    fileName: 'Moonfrare.pdf',
+    mimetype: 'application/pdf',
+    contextInfo: {
+      mentionedJid: [m.sender]
 }
 }, { quoted: m})
 }
@@ -111,4 +136,4 @@ function clockString(ms) {
   let m = isNaN(ms)? '--': Math.floor(ms / 60000) % 60
   let s = isNaN(ms)? '--': Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
-                         }
+}
