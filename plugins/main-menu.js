@@ -10,11 +10,11 @@ let txt = `︶•︶°︶•︶°︶•︶°︶•︶°︶•︶°︶
 > ✐ Hola! @${userId.split('@')[0]}, Soy *${botname}*, Aquí tienes la lista de comandos.
 
 ╭╌╼
-│✦ *BOT* » ${(conn.user.jid == global.conn.user.jid ? 'Bot/Principal' : 'Bot/Sub-Bot)}
+│✦ *Bot* » ${(conn.user.jid == global.conn.user.jid ? 'Bot/Principal' : 'Bot/Sub-Bot)}
 │✰ *Usuarios* » ${totalreg.toLocaleString()} 
 │ꕥ *Plugins* » ${totalCommands}
 │🜸 *Librería* » ${libreria}
-│⚘ *Canal* » 
+│⚘ *Canal* » whatsapp.com/channel/0029Vb6EMjb6GcGKmVITlG2p
 ╰ׅ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╼
 
 
