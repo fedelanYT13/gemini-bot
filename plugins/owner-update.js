@@ -12,7 +12,7 @@ const handler = async (m, { conn, text}) => {
     const stdout = execSync('git pull' + (text? ' ' + text: ''))
     let messager = stdout.toString().trim()
 
-    if (!messager) messager = '❀ */El bot ya está actualizado. No hay cambios nuevos._*'
+    if (!messager) messager = '❀ *_El bot ya está actualizado. No hay cambios nuevos._*'
     else if (messager.includes('Already up to date')) messager = '👻 *_Ya estoy actualizada pendejo_*'
     else if (messager.includes('Updating')) messager = 'ꕥ *_Actualizando archivos del bot..._*\n\n' + messager
 
