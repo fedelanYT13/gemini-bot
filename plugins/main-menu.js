@@ -9,10 +9,10 @@ let handler = async (m, { conn, args}) => {
   let creatorNumber = Array.isArray(global.owner) && global.owner[0]?.[0]? global.owner[0][0].split('@')[0]: 'Desconocido'
   
   let txt = `︶•︶°︶•︶°︶•︶°︶•︶°︶•︶°︶
-> ꕥ Hola! @${userId.split('@')[0]}, Soy *${botname}*, Aquí tienes la lista de comandos.
+> ꕥ Hola! @${userId.split('@')[0]}, Soy *${botname}*,
 
 ╭╌╼ 
-│✐ *𝓓𝓮𝓿𝓮𝓵𝓸𝓹𝓮𝓭 𝓫𝔂* » @${creatorNumber} 
+│✐ *𝓓𝓮𝓿𝓮𝓵𝓸𝓹𝓮𝓭 𝓫𝔂* » ${creatorNumber} 
 │✰ *𝐔𝐬𝐮𝐚𝐫𝐢𝐨𝐬* » ${totalreg.toLocaleString()}
 │ꕥ *𝐏𝐥𝐮𝐠𝐢𝐧𝐬* » ${totalCommands}
 │🜸 *𝐋𝐢𝐛𝐫𝐞𝐫𝐢́𝐚* » ${libreria}
