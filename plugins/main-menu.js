@@ -7,10 +7,10 @@ let totalreg = Object.keys(global.db.data.users).length
 let totalCommands = Object.values(global.plugins).filter((v) => v.help && v.tags).length
     
 let txt = `︶•︶°︶•︶°︶•︶°︶•︶°︶•︶°︶
-> ❀ Hola! @${userId.split('@')[0]}, Soy *${botname}*, Aquí tienes la lista de comandos.
+> ✐ Hola! @${userId.split('@')[0]}, Soy *${botname}*, Aquí tienes la lista de comandos.
 
 ╭╌╼
-│✦ *Tipo* » ${(conn.user.jid == global.conn.user.jid ? 'Principal' : 'Sub-Bot')}
+│✧︎ *Bot* » ${(conn.user.jid == global.conn.user.jid ? 'Bot/Principal' : 'Bot/Sub-Bot')}
 │✰ *Usuarios* » ${totalreg.toLocaleString()}
 │ꕥ *Plugins* » ${totalCommands}
 │🜸 *Librería* » ${libreria}
