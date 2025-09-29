@@ -6,13 +6,13 @@ let handler = async (m, { conn, args}) => {
   let totalreg = Object.keys(global.db.data.users).length
   let totalCommands = Object.values(global.plugins).filter((v) => v.help && v.tags).length
 
-  let creatorName = Array.isArray(global.owner) && global.owner[0]?.[1]? global.owner[0][1]: '𝑫𝒆𝒗-𝒇𝒆𝒅𝒆𝒙𝒚𝒛'
-
+  let creatorNumber = Array.isArray(global.owner) && global.owner[0]?.[0]? global.owner[0][0].split('@')[0]: 'Desconocido'
+  
   let txt = `︶•︶°︶•︶°︶•︶°︶•︶°︶•︶°︶
 > ꕥ Hola! @${userId.split('@')[0]}, Soy *${botname}*, Aquí tienes la lista de comandos.
 
 ╭╌╼ 
-│✐ *𝓓𝓮𝓿𝓮𝓵𝓸𝓹𝓮𝓭 𝓫𝔂* » @${creatorName}
+│✐ *𝓓𝓮𝓿𝓮𝓵𝓸𝓹𝓮𝓭 𝓫𝔂* » @${creatorNumber} 
 │✰ *𝐔𝐬𝐮𝐚𝐫𝐢𝐨𝐬* » ${totalreg.toLocaleString()}
 │ꕥ *𝐏𝐥𝐮𝐠𝐢𝐧𝐬* » ${totalCommands}
 │🜸 *𝐋𝐢𝐛𝐫𝐞𝐫𝐢́𝐚* » ${libreria}
