@@ -9,13 +9,14 @@ let totalCommands = Object.values(global.plugins).filter((v) => v.help && v.tags
 let txt = `︶•︶°︶•︶°︶•︶°︶•︶°︶•︶°︶
 > ✐ Hola! @${userId.split('@')[0]}, Soy *${botname}*, Aquí tienes la lista de comandos.
 
-╭╌╼
-│✦ *Bot* » ${(conn.user.jid == global.conn.user.jid ? 'Bot/Principal' : 'Bot/Sub-Bot)}
+╭┈ࠢ͜┅ࠦ͜͜╾݊͜─ؕ͜─ׄ͜─֬͜─֟͜─֫͜─ׄ͜─ؕ͜─݊͜┈ࠦ͜┅ࠡ͜͜┈࠭͜͜۰۰͜۰
+│✦ *BOT* » ${(conn.user.jid == global.conn.user.jid ? 'Bot/Principal' : 'Bot/Sub-Bot)}
 │✰ *Usuarios* » ${totalreg.toLocaleString()} 
 │ꕥ *Plugins* » ${totalCommands}
 │🜸 *Librería* » ${libreria}
-│⚘ *Canal* » whatsapp.com/channel/0029Vb6EMjb6GcGKmVITlG2p
-╰ׅ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╼
+│⚘ *Canal* » 
+╰ׅ┈ࠢ͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴ ⋱࣭ ᩴ  ⋮֔   ᩴ ⋰╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜┈ࠢ͜
+
 
 
 ╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴𐔌 *ECONOMY* 𐦯╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
