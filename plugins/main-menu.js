@@ -15,7 +15,7 @@ let handler = async (m, { conn, args}) => {
 │✐ *𝓓𝓮𝓿𝓮𝓵𝓸𝓹𝓮𝓭 𝓫𝔂* » @${creatorName}
 │✰ *𝐔𝐬𝐮𝐚𝐫𝐢𝐨𝐬* » ${totalreg.toLocaleString()}
 │ꕥ *𝐏𝐥𝐮𝐠𝐢𝐧𝐬* » ${totalCommands}
-│🜸 *Librería* » ${libreria}
+│🜸 *𝐋𝐢𝐛𝐫𝐞𝐫𝐢́𝐚* » ${libreria}
 │✧︎ *𝐁𝐨𝐭* » ${(conn.user.jid == global.conn.user.jid? 'Bot/Principal': 'Bot/Sub-Bot')}
 │⚘ *𝐂𝐡𝐚𝐧𝐧𝐞𝐥* » whatsapp.com/channel/0029Vb6EMjb6GcGKmVITlG2p
 ╰ׅ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╼
