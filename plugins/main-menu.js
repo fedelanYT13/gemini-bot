@@ -12,10 +12,10 @@ let txt = `︶•︶°︶•︶°︶•︶°︶•︶°︶•︶°︶
 ╭╌╼
 │✦ *Tipo* » ${(conn.user.jid == global.conn.user.jid ? 'Principal' : 'Sub-Bot')}
 │✰ *Usuarios* » ${totalreg.toLocaleString()}
-│⚘ *Versión* » ${vs}
 │ꕥ *Plugins* » ${totalCommands}
 │🜸 *Librería* » ${libreria}
-╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╼
+│⚘ *Canal* » whatsapp.com/channel/0029Vb6EMjb6GcGKmVITlG2p
+╰ׅ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╼
 
 ╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴𐔌 *ECONOMY* 𐦯╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
 > ✿ Comandos de *Economía* para ganar dinero.
