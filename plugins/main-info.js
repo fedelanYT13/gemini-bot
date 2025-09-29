@@ -109,7 +109,7 @@ const handler = async (m, { conn, text, command, usedPrefix}) => {
       case 'script':
       case 'sc': {
         await m.react('🕒')
-        const res = await fetch('https://api.github.com/repos/Dev-fedexyz17/Kaoruko-bot.git')
+        const res = await fetch('https://api.github.com/repos/Dev-fedexyz17')
         if (!res.ok) throw new Error('No se pudo obtener los datos del repositorio.')
 
         const json = await res.json()
