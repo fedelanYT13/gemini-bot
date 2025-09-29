@@ -20,54 +20,54 @@ let handler = async (m, { conn, args}) => {
 │⚘ *𝐂𝐡𝐚𝐧𝐧𝐞𝐥* » whatsapp.com/channel/0029Vb6EMjb6GcGKmVITlG2p
 ╰ׅ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╼
 
-╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴𐔌 *ECONOMY* 𐦯╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
+╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴𐔌 *_ECONOMIA_* 𐦯╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
 > ❒ Comandos de *Economía* para ganar dinero.
-✦ *#w • #work • #trabajar*
-> ⸙ Ganar coins trabajando.
-✦ *#slut • #protituirse*
-> ⸙ Ganar coins prostituyéndote.
-✦ *#coinflip • #flip • #cf* + [cantidad] <cara/cruz>
-> ⸙ Apostar coins en un cara o cruz.
-✦ *#crime • #crimen*
-> ⸙ Ganar coins rapido.
-✦ *#roulette • #rt* + [red/black] [cantidad]
-> ⸙ Apostar coins en una ruleta.
-✦ *#casino • #apostar* • *#slot* + [cantidad]
-> ⸙ Apuestar coins en el casino.
-✦ *#balance • #bal • #bank* + <usuario>
-> ⸙ Ver cuantos coins tienes en el banco.
-✦ *#deposit • #dep • #depositar • #d* + [cantidad] | all
-> ⸙ Depositar tus coins en el banco.
-✦ *#withdraw • #with • #retirar* + [cantidad] | all
-> ⸙ Retirar tus coins del banco.
-✦ *#economyinfo • #einfo*
-> ⸙ Ver tu información de economía en el grupo.
-✦ *#givecoins • #pay • #coinsgive* + [usuario] [cantidad]
-> ⸙ Dar coins a un usuario.
-✦ *#miming • #minar • #mine*
-> ⸙ Realizar trabajos de minería y ganar coins.
-✦ *#daily • #diario*
-> ⸙ Reclamar tu recompensa diaria.
-✦ *#cofre* • *#coffer*
-> ⸙ Reclamar tu cofre diario.
-✦ *#weekly • #semanal*
-> ⸙ Reclamar tu recompensa semanal.
-✦ *#monthly • #mensual*
-> ⸙ Reclamar tu recompensa mensual.
-✦ *#steal • #robar • #rob* + [@mencion]
-> ⸙ Intentar robar coins a un usuario.
-✦ *#economyboard • #eboard • #baltop* + <pagina>
-> ⸙ Ver tu información de economía en el grupo.
-✦ *#aventura • #adventure*
-> ⸙ Aventuras para ganar coins y exp.
-✦ *#curar • #heal*
-> ⸙ Curar salud para salir de aventuras.
-✦ *#cazar • #hunt*
-> ⸙ cazar animales para ganar coins y exp.
-✦ *#fish • #pescar*
-> ⸙ Ganar coins y exp pescando.
-✦ *#mazmorra • #dungeon*
-> ⸙ Explorar mazmorras para ganar coins y exp.
+┃⋆˚ꕥ˖° *#w • #work • #trabajar*
+> ⸙ _Ganar coins trabajando_.
+┃⋆˚ꕥ˖° *#slut • #protituirse*
+> ⸙ _Ganar coins prostituyéndote_.
+┃⋆˚ꕥ˖° *#coinflip • #flip • #cf* + [cantidad] <cara/cruz>
+> ⸙ _Apostar coins en un cara o cruz_.
+┃⋆˚ꕥ˖° *#crime • #crimen*
+> ⸙ _Ganar coins rapido_.
+┃⋆˚ꕥ˖° *#roulette • #rt* + [red/black] [cantidad]
+> ⸙ _Apostar coins en una ruleta_.
+┃⋆˚ꕥ˖° *#casino • #apostar* • *#slot* + [cantidad]
+> ⸙ /Apuestar coins en el casino_.
+┃⋆˚ꕥ˖° *#balance • #bal • #bank* + <usuario>
+> ⸙ _Ver cuantos coins tienes en el banco_.
+┃⋆˚ꕥ˖° *#deposit • #dep • #depositar • #d* + [cantidad] | all
+> ⸙ _Depositar tus coins en el banco_.
+┃⋆˚ꕥ˖° *#withdraw • #with • #retirar* + [cantidad] | all
+> ⸙ _Retirar tus coins del banco_.
+┃⋆˚ꕥ˖° *#economyinfo • #einfo*
+> ⸙ _Ver tu información de economía en el grupo_.
+┃⋆˚ꕥ˖° *#givecoins • #pay • #coinsgive* + [usuario] [cantidad]
+> ⸙ _Dar coins a un usuario_.
+┃⋆˚ꕥ˖° *#miming • #minar • #mine*
+> ⸙ _Realizar trabajos de minería y ganar coins_.
+┃⋆˚ꕥ˖° *#daily • #diario*
+> ⸙ /Reclamar tu recompensa diaria_.
+┃⋆˚ꕥ˖° *#cofre* • *#coffer*
+> ⸙ /Reclamar tu cofre diario_.
+┃⋆˚ꕥ˖° *#weekly • #semanal*
+> ⸙ _Reclamar tu recompensa semanal_.
+┃⋆˚ꕥ˖° *#monthly • #mensual*
+> ⸙ _Reclamar tu recompensa mensual_.
+┃⋆˚ꕥ˖° *#steal • #robar • #rob* + [@mencion]
+> ⸙ _Intentar robar coins a un usuario_.
+┃⋆˚ꕥ˖° *#economyboard • #eboard • #baltop* + <pagina>
+> ⸙ _Ver tu información de economía en el grupo_.
+┃⋆˚ꕥ˖° *#aventura • #adventure*
+> ⸙ _Aventuras para ganar coins y exp_.
+┃⋆˚ꕥ˖° *#curar • #heal*
+> ⸙ _Curar salud para salir de aventuras_.
+┃⋆˚ꕥ˖° *#cazar • #hunt*
+> ⸙ _cazar animales para ganar coins y exp_.
+┃⋆˚ꕥ˖° *#fish • #pescar*
+> ⸙ _Ganar coins y exp pescando_.
+┃⋆˚ꕥ˖° *#mazmorra • #dungeon*
+> ⸙ _Explorar mazmorras para ganar coins y exp_.
 ╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ
 
 ╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴𐔌 *DOWNLOAD* 𐦯╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
