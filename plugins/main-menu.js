@@ -436,7 +436,7 @@ let handler = async (m, { conn, args}) => {
 ╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ`.trim()
 await conn.sendMessage(m.chat, {
     text: txt,
-    footer: 'Selecciona una opción:',
+    footer: '© 𝖯𝗈𝗐𝖾𝗋𝖾𝖽 𝖡𝗒 𝖬𝗈𝗈𝗇𝖿𝗋𝖺𝗋𝖾 𝗍𝖾𝖺𝗆 ☽',
     buttons: [
       { buttonId: '.code', buttonText: { displayText: 'ꕥ ꜱᴇʀ ꜱᴜʙ-ʙᴏᴛ'}, type: 1}
     ],
