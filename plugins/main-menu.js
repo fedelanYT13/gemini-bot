@@ -21,7 +21,7 @@ let handler = async (m, { conn, args}) => {
 ╰ׅ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╼
 
 ╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴𐔌 *ECONOMY* 𐦯╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
-> ✿ Comandos de *Economía* para ganar dinero.
+> ❒ Comandos de *Economía* para ganar dinero.
 ✦ *#w • #work • #trabajar*
 > ⸙ Ganar coins trabajando.
 ✦ *#slut • #protituirse*
@@ -71,7 +71,7 @@ let handler = async (m, { conn, args}) => {
 ╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ
 
 ╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴𐔌 *DOWNLOAD* 𐦯╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
-> ✿ Comandos de *Descargas* para descargar archivos de varias fuentes.
+> ❒ Comandos de *Descargas* para descargar archivos de varias fuentes.
 ✦ *#tiktok • #tt* + [Link] / [busqueda]
 > ⸙ Descargar un video de TikTok.
 ✦ *#mediafire • #mf* + [Link]
@@ -97,7 +97,7 @@ let handler = async (m, { conn, args}) => {
 ╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ
 
 ╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴𐔌 *GACHA* 𐦯╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
-> ✿ Comandos de *Gacha* para reclamar y colecciónar personajes.
+> ❒ Comandos de *Gacha* para reclamar y colecciónar personajes.
 ✦ *#buycharacter • #buychar • #buyc* + [nombre]
 > ⸙ Comprar un personaje en venta.
 ✦ *#charimage • #waifuimage • #cimage • #wimage* + [nombre]
@@ -145,7 +145,7 @@ let handler = async (m, { conn, args}) => {
 ╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ
 
 ╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴𐔌 *SOCKETS* 𐦯╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
-> ✿ Comandos para registrar tu propio Bot.
+> ❒ Comandos para registrar tu propio Bot.
 ✦ *#qr • #code*
 > ⸙ Crear un Sub-Bot con un codigo QR/Code
 ✦ *#bots • #botlist*
@@ -169,7 +169,7 @@ let handler = async (m, { conn, args}) => {
 ╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ
 
 ╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴𐔌 *UTILITIES* 𐦯╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
-> ✿ Comandos de *Útilidades*.
+> ❒ Comandos de *Útilidades*.
 ✦ *#help • #menu*
 > ⸙ Ver el menú de comandos.
 ✦ *#sc • #script*
@@ -221,7 +221,7 @@ let handler = async (m, { conn, args}) => {
 ╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ
 
 ╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴𐔌 *PROFILES* 𐦯╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
-> ✿ Comandos de *Perfil* para ver y configurar tu perfil.
+> ❒ Comandos de *Perfil* para ver y configurar tu perfil.
 ✦ *#leaderboard • #lboard • #top* + <Paginá>
 > ⸙ Top de usuarios con más experiencia.
 ✦ *#level • #lvl* + <@Mencion>
@@ -251,7 +251,7 @@ let handler = async (m, { conn, args}) => {
 ╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ
 
 ╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴𐔌 *GROUPS* 𐦯╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
-> ✿ Comandos para *Administradores* de grupos.
+> ❒ Comandos para *Administradores* de grupos.
 ✦ *#tag • #hidetag • #invocar • #tagall* + [mensaje]
 > ⸙ Envía un mensaje mencionando a todos los usuarios del grupo.
 ✦ *#detect • #alertas* + [enable/disable]
@@ -319,7 +319,7 @@ let handler = async (m, { conn, args}) => {
 ╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅׅ
 
 ╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴𐔌 *ANIME* 𐦯╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
-> ✿ Comandos de reacciones de anime.
+> ❒ Comandos de reacciones de anime.
 ✦ *#angry • #enojado* + <mencion>
 > ⸙ Estar enojado
 ✦ *#bath • #bañarse* + <mencion>
